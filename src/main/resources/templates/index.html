@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+<script src="/META-INF/resources/webjars/jquery/3.2.1/jquery.js"></script>
+<script type="text/javascript">
+//使用jQuery中的ajax进行请求的发送
+	function createAjax(){
+		$("input[type=button]").click(function(){
+			$.ajax({
+				type:"post",
+				url:"show13",
+				 contentType:"application/json",/* 设置ajax请求数据为json  */
+				data:JSON.stringify({"name":"zhansgan","id":"123"}),
+				success:function(data){
+					alert(data.name);
+				}
+			});
+		})		
+	}
+	</script>
+</head>
+<body>
+<input type="button" value="ajax" onclick="createAjax();"/>
+	Controller配置 ：
+
+	
+	<div style="border: 1px">
+		<form action="show1" method="post">
+			name:<input type="text" name="name" value="" />&nbsp;&nbsp;
+			id :<input type="text" name="id" value="" />
+			<input type="submit" value="SHOW1" /> 
+			
+		</form>
+		<form action="show2" method="post">
+			name:<input type="text" name="name" value="" />&nbsp;&nbsp;
+			id :<input type="text" name="id" value="" />
+			age :<input type="text" name="age" value="" />
+			address :<input type="text" name="address" value="" />
+			<input type="submit" value="SHOW2--Person" /> 
+		</form>
+		
+		<form action="show3" method="post">
+			name:<input type="text" name="name" value="" />&nbsp;&nbsp;
+			id :<input type="text" name="id" value="" />
+			<input type="submit" value="SHOW3--Map" /> 
+		</form>
+		
+		<form action="show10" method="post">
+			name:<input type="text" name="name" value="" />&nbsp;&nbsp;
+			id :<input type="text" name="id" value="" />
+			age :<input type="text" name="age" value="" />
+			address :<input type="text" name="address" value="" />
+			<input type="submit" value="SHOW10--Model" /> 
+		</form>
+		<form action="show12" method="post">
+			name:<input type="text" name="name" value="" />&nbsp;&nbsp;
+			id :<input type="text" name="id" value="" />
+			age :<input type="text" name="age" value="" />
+			address :<input type="text" name="address" value="" />
+			<input type="submit" value="SHOW12--Forward" /> 
+		</form>
+	</div>
+</body>
+</html>
