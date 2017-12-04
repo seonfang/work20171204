@@ -19,7 +19,29 @@
 			});
 		})		
 	})
-	//通过Ajax响应数据:单个对象
+	
+		//通过Ajax响应数据:单个对象
+	$(document).ready(function(){
+		/* $("#name").click(function(){ */
+			$.ajax({
+				type:"post",
+				url:"aj",
+				success:function(data){
+					$("#aj").empty();
+					$("#aj").append("<tr><td>name</td><td>id</td></tr>");
+				
+						var result="<tr>";
+						result+="<td>"+data.name+"</td>";
+						result+="<td>"+data.id+"</td></tr>";
+						$("#aj").append(result);
+				}
+			});
+		})		
+	/* }) */
+	
+	
+	
+
 	function ajtest(){
 			$.post("aj",function(data){	
 				
@@ -34,7 +56,7 @@
 			})
 		}
 	
-	//通过Ajax响应数据:List
+	
 	function ajatest(){
 		$.post("aja",function(data){	
 				$("#aja").empty();
