@@ -1,6 +1,8 @@
 package com.example.cont;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.entity.People;
 import com.example.entity.Person;
 
 @Controller
@@ -24,7 +27,8 @@ public class ControllerTest {
 	@RequestMapping("/show")
 	public String test() {
 		//model.addAttribute("code", "forward");
-		return  "index";
+		//return  "index";
+		return  "json";
 	}
 	
 	@RequestMapping("/show1")
@@ -83,21 +87,41 @@ public class ControllerTest {
 	
 	//JSON
 	/**
-	 * 使用json对象进行传值
-	 * 		前端数据用字符串的形式传给后台，直接传到对象中
-	 * 		后台用json对象将数据响应给前端
-	 * @param peo
-	 * @param resp
-	 * @return
-	 * @throws IOException
+	 * 接收前台传的json
 	 */
-	@RequestMapping("show13")
+	@RequestMapping("showJson")
 	@ResponseBody
-	public Person show13(@RequestBody Person per, HttpServletResponse resp) throws IOException{
-		System.out.println("接受到请求:"+per);
-		 Person p1=new Person("he", 18, 22, "qwer");
-	        System.out.println(p1);
-		      return p1;
+	public People showJson(@RequestBody People peo, HttpServletResponse resp) throws IOException{
+		System.out.println("接受到请求:"+peo);
+		People p1=new People(7788, "wangwu");
+		return p1;
 	}
-
+	/**
+	 * Ajax响应:单个对象
+	 */
+	@RequestMapping("aj")
+	@ResponseBody
+	public People  getJaon(){
+		//处理请求信息
+			//调用业务层
+//			List<People> p=new ArrayList<People>();
+//			p.add(new People(7788, "wangwu"));
+//			p.add(new People(7799, "wangsu"));
+			People p= new People(7700, "wangyu");
+		return p;
+	}
+	/**
+	 * Ajax响应
+	 */
+	@RequestMapping("aja")
+	@ResponseBody
+	public List<People> getJson(){
+		//处理请求信息
+			//调用业务层
+			List<People> p=new ArrayList<People>();
+			p.add(new People(7788, "wangwu"));
+			p.add(new People(7799, "wangsu"));
+			p.add(new People(7711, "wangqu"));
+		return p;
+	}
 }
