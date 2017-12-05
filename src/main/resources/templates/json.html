@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
 <title>Insert title here</title>
 <script th:src="@{webjars/jquery/3.2.1/jquery.js}"></script>
 <script type="text/javascript">
 //使用jQuery中的ajax进行请求的发送
+//将json传到controlle
 	$(document).ready(function(){
 		$("input[type=button]").click(function(){
 			$.ajax({
 				type:"post",
 				url:"showJson",
 				 contentType:"application/json",/* 设置ajax请求数据为json  */
-				data:JSON.stringify({"name":"zhansgan","id":"123"}),
+				data:JSON.stringify({"name":"zhanan","id":"123"}),
 				success:function(data){
 					alert(data.name);
 				}
@@ -21,8 +22,7 @@
 	})
 	
 		//通过Ajax响应数据:单个对象
-	$(document).ready(function(){
-		/* $("#name").click(function(){ */
+	/* $(document).ready(function(){
 			$.ajax({
 				type:"post",
 				url:"aj",
@@ -36,42 +36,31 @@
 						$("#aj").append(result);
 				}
 			});
-		})		
-	/* }) */
+		})		 */
 	
+		//通过Ajax响应数据:List
+	$(document).ready(function(){
+			$.ajax({
+				type:"post",
+				url:"aja",
+				success:function(data){
+					$("#aj").empty();
+					$("#aj").append("<tr><td>name</td><td>id</td></tr>");
+				for(var i in data){
+						var result="<tr>";
+						result+="<td>"+data[i].name+"</td>";
+						result+="<td>"+data[i].id+"</td></tr>";
+						$("#aj").append(result);
+				}
+				}
+			});
+		})		
 	
 	
 
-	function ajtest(){
-			$.post("aj",function(data){	
-				
-				$("#aj").empty();
-				$("#aj").append("<tr><td>name</td><td>id</td></tr>");
-			
-					var result="<tr>";
-					result+="<td>"+data.name+"</td>";
-					result+="<td>"+data.id+"</td></tr>";
-					$("#aj").append(result);
-				
-			})
-		}
 	
 	
-	function ajatest(){
-		$.post("aja",function(data){	
-				$("#aja").empty();
-				$("#aj").append("<tr><td>name</td><td>id</td></tr>");
-		
-					var result="<tr>";
-					result+="<td>"+data[0].name+"</td>";
-					result+="<td>"+data[0].id+"</td></tr>";
-					$("#aja").append(result);
-					var result1="<tr>";
-					result1+="<td>"+data[1].name+"</td>";
-					result1+="<td>"+data[1].id+"</td></tr>";
-					$("#aja").append(result1);
-			})
-		}
+	
 	</script>
 </head>
 <body>
@@ -81,8 +70,14 @@
 			<td>id</td>
 		</tr>
 	</table>
+	
 <input type="button" value="测试json" />
-<input type="submit" value="测试ajax"  onclick="ajtest()"/>
-<input type="submit" value="测试ajax-List"  onclick="ajatest()"/>
+
+<div>
+	<p th:text="${session.Name}"></p>
+		<p th:text="#{properties.home}"></p>
+		<h2 th:text="#{product.id}">Product id</h2>
+	</div>
+
 </body>
 </html>

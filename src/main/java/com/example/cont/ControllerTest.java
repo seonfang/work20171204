@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -91,13 +93,13 @@ public class ControllerTest {
 	 */
 	@RequestMapping("showJson")
 	@ResponseBody
-	public People showJson(@RequestBody People peo, HttpServletResponse resp) throws IOException{
+	public People showJson(@RequestBody People peo) throws IOException{
 		System.out.println("接受到请求:"+peo);
 		People p1=new People(7788, "wangwu");
 		return p1;
 	}
 	/**
-	 * Ajax响应:单个对象
+	 * Ajax响应:Json传递单个对象
 	 */
 	@RequestMapping("aj")
 	@ResponseBody
@@ -111,13 +113,16 @@ public class ControllerTest {
 		return p;
 	}
 	/**
-	 * Ajax响应
+	 * Json 传递List
 	 */
 	@RequestMapping("aja")
 	@ResponseBody
-	public List<People> getJson(){
-		//处理请求信息
+	public List<People> getJson(/*HttpServletRequest req*/){
+	
+/*		//处理请求信息
 			//调用业务层
+		HttpSession session = req.getSession();
+		session.setAttribute("Name","Seon");*/
 			List<People> p=new ArrayList<People>();
 			p.add(new People(7788, "wangwu"));
 			p.add(new People(7799, "wangsu"));

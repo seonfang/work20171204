@@ -5,24 +5,10 @@
 <title>Insert title here</title>
 <script src="/META-INF/resources/webjars/jquery/3.2.1/jquery.js"></script>
 <script type="text/javascript">
-//使用jQuery中的ajax进行请求的发送
-	function createAjax(){
-		$("input[type=button]").click(function(){
-			$.ajax({
-				type:"post",
-				url:"show13",
-				 contentType:"application/json",/* 设置ajax请求数据为json  */
-				data:JSON.stringify({"name":"zhansgan","id":"123"}),
-				success:function(data){
-					alert(data.name);
-				}
-			});
-		})		
-	}
+
 	</script>
 </head>
 <body>
-<input type="button" value="ajax" onclick="createAjax();"/>
 	Controller配置 ：
 
 	
