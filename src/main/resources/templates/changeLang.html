@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+<p th:text="#{name}"></p>
+<p th:text="#{id}"></p>
+
+ <td> <a th:href="@{/changeLang(lang='zh')}">中文</a> </td> 
+  <td> <a th:href="@{/changeLang(lang='en')}">English</a> </td> 
+</body>
+</html>

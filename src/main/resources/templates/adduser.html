@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>增加用户</title>
+</head>
+<body>
+	<form action="addUser" method="post" th:object="${user}">
+	<table>
+	<tr>
+			<td>id : </td>
+			<td> 
+				<input  type="text" th:value="${user.id}" th:field="*{id}" />
+			</td>
+	</tr>
+	<tr>
+			<td>name:</td>
+			<td>
+				<input  type="text" th:value="${user.name}" th:field="*{name}" />
+			</td>
+	</tr>
+	<tr>
+			<td>sex :</td>
+			<td>
+					<input   type="radio" value="男" th:field="*{sex}" />男
+					<input   type="radio" value="女" th:field="*{sex}" />女
+				</td>
+	</tr>
+	<tr>
+			<td>age :</td>
+			<td>
+				<input     type="text" th:value="${user.age}" th:field="*{age}" />
+			</td>
+	</tr>
+	<tr>
+			<td ><input type="submit" value="提交" /> </td>
+	</tr>
+	
+	</table>
+		</form>
+		
+		
+		<div th:include="footer::copy"></div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+
+
+		<a href="toUpdata">新增</a>
+		
+		<table border="1px" id="aj">
+		<tr >
+			<td>编号</td>
+			<td>姓名</td>
+			<td>性别</td>
+			<td>年龄</td>
+			<td>操作</td>
+		</tr>
+		
+		<tr th:each="prod : ${userlist}">
+	        <td th:text="${prod.id}"></td>
+	         <td th:text="${prod.name}"></td>
+	          <td th:text="${prod.sex}"></td>
+	           <td th:text="${prod.age}"></td>
+	          <td> <a th:href="@{/toUpdata(id=${prod.id})}">修改</a> </td> 
+      </tr>
+	</table>
+	<div>
+		<!-- 获取当期时间并显示为指定格式 -->
+	<!-- 	<p th:text="${new java.util.Date().getTime()}"></p> -->
+		<p th:text="${#dates.format(new java.util.Date().getTime() ,'yyyy-MM-dd HH:mm:ss')}"></p>
+	</div>
+<div th:include="footer::copy"></div>
+</body>
+</html>

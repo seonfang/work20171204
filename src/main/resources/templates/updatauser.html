@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>不再使用</title>
+</head>
+<body>
+
+		<form action="adduser" th:object="${user}">
+			id<input type="text" th:value="${user.id}" th:field="*{id}" /> 
+			用户名<input type="text" th:value="${user.name}" th:field="*{name}" />
+			年龄<input type="text" th:value="${user.age}" th:field="*{age}" />
+			性别 男<input type="radio" value="男" th:field="*{sex}" />
+				女<input type="radio" value="女" th:field="*{sex}" />
+		<input type="submit" value="提交" />
+	</form>
+	<div th:include="footer::copy"></div>
+</body>
+</html>
